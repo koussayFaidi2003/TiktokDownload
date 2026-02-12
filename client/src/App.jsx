@@ -14,8 +14,10 @@ function App() {
     setError('')
     setResult(null)
 
+    const API_BASE = import.meta.env.VITE_API_URL || '';
+
     try {
-      const response = await fetch('/api/download', {
+      const response = await fetch(`${API_BASE}/api/download`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -94,13 +96,13 @@ function App() {
 
                 <div className="download-actions">
                   <a
-                    href={`/api/proxy?url=${encodeURIComponent(result.videoUrl)}&name=tiksave-${Date.now()}`}
+                    href={`${API_BASE}/api/proxy?url=${encodeURIComponent(result.videoUrl)}&name=tiksave-${Date.now()}`}
                     className="download-btn"
                   >
                     Download Video (No Watermark)
                   </a>
                   <a
-                    href={`/api/proxy?url=${encodeURIComponent(result.music.play_url)}&name=tiksave-audio-${Date.now()}`}
+                    href={`${API_BASE}/api/proxy?url=${encodeURIComponent(result.music.play_url)}&name=tiksave-audio-${Date.now()}`}
                     className="download-btn secondary"
                   >
                     Download Audio (MP3)
