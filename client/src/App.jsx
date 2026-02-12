@@ -6,6 +6,8 @@ function App() {
   const [result, setResult] = useState(null)
   const [error, setError] = useState('')
 
+  const API_BASE = import.meta.env.VITE_API_URL || '';
+
   const handleDownload = async (e) => {
     if (e) e.preventDefault()
     if (!url) return
@@ -14,7 +16,6 @@ function App() {
     setError('')
     setResult(null)
 
-    const API_BASE = import.meta.env.VITE_API_URL || '';
 
     try {
       const response = await fetch(`${API_BASE}/api/download`, {
